@@ -1,0 +1,41 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Developer {
+  id: Int!
+  name: String!
+  hp: Int
+  xp: Int
+  level: Int
+}
+
+type Tool {
+  id: Int!
+  name: String!
+  mastery: Int!
+}
+
+type Query {
+  developers: [Developer!]!
+  tools: [Tool!]!
+}
+
+type Mutation {
+  addDeveloper(input: AddDeveloperInput!): AddDeveloperPayload!
+}
+
+input AddDeveloperInput {
+  name: String!
+  hp: Int
+  xp: Int
+  level: Int
+}
+
+type AddDeveloperPayload {
+  developer: Developer!
+}
+
+"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
+directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION

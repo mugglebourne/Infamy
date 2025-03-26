@@ -7,7 +7,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="GQL\.graphqlrc.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Infamy.ServiceDefaults\Infamy.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\kapil\source\repos\Infamy\Infamy.Web\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\kapil\source\repos\Infamy\Infamy.Web\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\kapil\source\repos\Infamy\Infamy.Web\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <GraphQL Include="GQL\.graphqlrc.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="9.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.3" />
+    <PackageReference Include="StrawberryShake.Blazor" Version="15.1.0" />
+    <PackageReference Include="StrawberryShake.Server" Version="15.1.0" />
   </ItemGroup>
 
 </Project>

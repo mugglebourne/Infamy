@@ -1,10 +1,35 @@
+using Infamy.ApiService.DataModels;
+using Microsoft.EntityFrameworkCore;
+//using HotChocolate.AspNetCore.Com
+using Infamy.ApiService.Types;
+using Infamy.ServiceDefaults.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+var CorsPolicy = "_corsPolicy";
 
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+        options => options.UseNpgsql("Host=ep-square-dawn-a5jly8xh-pooler.us-east-2.aws.neon.tech;Username=neondb_owner;Password=npg_UvE9FMAYcW5z;Database=neondb"))
+        .AddGraphQLServer().AddQueryType<Query>().AddMutationType<Mutation>().AddType<DeveloperType>().AddType<ToolType>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(CorsPolicy, builder =>
+    {
+        builder.WithOrigins("*")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+//builder.Services
+//.AddQueryType<Queries>()
+//.AddType<Developer>();
 
 var app = builder.Build();
 
@@ -27,9 +52,14 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+app.MapGraphQL();
+
 app.MapDefaultEndpoints();
 
-app.Run();
+app.UseCors(CorsPolicy);
+
+//app.Run();
+await app.RunWithGraphQLCommandsAsync(args);
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {

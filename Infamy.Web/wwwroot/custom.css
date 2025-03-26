@@ -1,0 +1,102 @@
+﻿main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hud-lt {
+    width: 20rem;
+    height: 10rem;
+    z-index: 10;
+    background: rgba(166,61,64, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.5rem;
+    color: #fff;
+}
+
+#hud-ct {
+    width: 10vw;
+    height: 5rem;
+    z-index: 10;
+    background: rgb(0, 255, 255, 0.3);
+    position: fixed;
+    top: 0;
+    left: 45vw;
+    /*    align-self: center;*/
+}
+
+#hud-rt {
+    width: 20rem;
+    height: 10rem;
+    z-index: 10;
+    background: rgb(0, 255, 255, 0.3);
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#hud-lb {
+    width: 10rem;
+    height: 5rem;
+    z-index: 10;
+    background: rgb(0, 255, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    -moz-animation: 10s infamy infinite;
+    -o-animation: 10s infamy infinite;
+    -webkit-animation: 10s infamy infinite;
+    animation: 10s infamy infinite;
+}
+
+#hud-rb {
+    width: 10rem;
+    height: 5rem;
+    z-index: 10;
+    background: rgb(0, 255, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+content {
+    width: 100vw;
+    height: 100vh   ;
+}
+
+@keyframes infamy {
+    0% {
+        background: rgb(0, 255, 255, 0.3);
+    }
+
+    1% {
+        background: rgb(255, 255, 255, 1);
+    }
+
+    2% {
+        background: rgb(0, 255, 255, 0.6);
+    }
+
+    50% {
+        background: rgb(0, 255, 255, 0.6);
+    }
+
+    51% {
+        background: rgb(255, 255, 255, 1);
+    }
+
+    52% {
+        background: rgb(0, 255, 255, 0.6);
+    }
+
+    100% {
+        background: rgb(0, 255, 255, 0.3);
+    }
+}

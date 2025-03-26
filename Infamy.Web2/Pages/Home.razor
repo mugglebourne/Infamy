@@ -1,0 +1,55 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div id="hud-lt">
+    <ul>
+        <li>Mouse Position:]</li>
+        <li>Mouse Click: </li>
+    </ul>
+</div>
+<div id="hud-ct">
+    <UseGetDevelopers Context="data">
+        <ChildContent>
+            @data.Developers[0]!.Name
+        </ChildContent>
+        <ErrorContent>
+            Something went wrong ...<br />
+            @data.First().Message
+        </ErrorContent>
+        <LoadingContent>
+            Loading ...
+        </LoadingContent>
+    </UseGetDevelopers>
+</div>
+<div id="hud-rt"></div>
+<div id="hud-lb"></div>
+<div id="hud-rb">
+    <h4>Event Stream</h4>
+    @foreach (string item in eventStream.TakeLast(3))
+    {
+        <p>@item</p>
+    }
+</div>
+
+<div id="content" style="width:100%; height:100%;" @onmousemove="UpdateMouseCoordinates" @onclick=@((object receiver, MouseEventArgs e) => UpdateMouseClickCoordinates(e.))>
+</div>
+
+@code {
+    private List<string> eventStream = new List<string>();
+    private string[] panelUpdates = [];
+    // private string _mouseCoordinates = string.Empty;
+    private void UpdateMouseCoordinates(MouseEventArgs e, ElementReference? el)
+    {
+        //panelUpdates[0] = $"X: {e.ClientX}, Y: {e.ClientY}";
+        eventStream.Add($"MouseActivity - X: {e.ClientX}, Y: {e.ClientY}");
+        Console.WriteLine(panelUpdates.ToString());
+    }
+    private void UpdateMouseClickCoordinates(MouseEventArgs e, ElementReference? el)
+    {
+        // panelUpdates[1] = $"X: {e.ClientX}, Y: {e.ClientY}";
+        Console.WriteLine(panelUpdates.ToString());
+        eventStream.Add($"Time: {DateTime.Now}, Action: - Click @{e.GetHashCode()}");
+    }
+}
+

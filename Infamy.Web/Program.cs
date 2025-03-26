@@ -1,5 +1,7 @@
 using Infamy.Web;
 using Infamy.Web.Components;
+//using Infamy.Web;
+//using Infamy.Web.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,12 @@ builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+    //.AddInteractiveWebAssemblyComponents();
+
 
 builder.Services.AddOutputCache();
+
+builder.Services.AddInfamyClient().ConfigureHttpClient(client=> client.BaseAddress= new Uri("https://apiservice/graphql"));
 
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
     {
@@ -37,7 +43,11 @@ app.UseOutputCache();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+    
 
 app.MapDefaultEndpoints();
+
+//IInfamyClient client = app.services.GetRequiredService<IConferenceClient>();
+
 
 app.Run();

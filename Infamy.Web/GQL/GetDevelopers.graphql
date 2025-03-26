@@ -1,0 +1,9 @@
+query GetDevelopers{
+	developers {
+		id
+		name
+		hp
+		xp
+		level
+	}
+}
